@@ -4,14 +4,9 @@
 
   <url>
        <loc>https://thu-tram.github.io/chia-dong-tu-tieng-nhat/</loc>
-       <lastmod>2026-08-13T07:55:15+00:00</lastmod>
-       <changefreq>daily</changefreq>
+       <lastmod>2026-11-13T00:00:00+00:00</lastmod>
+       <changefreq>weekly</changefreq>
        <priority>1.0000</priority>
   </url>
-  <url>
-       <loc>https://thu-tram.github.io/chia-dong-tu-tieng-nhat/conjugation/drill.html</loc>
-       <lastmod>2026-08-13T07:55:15+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
+
 </urlset>

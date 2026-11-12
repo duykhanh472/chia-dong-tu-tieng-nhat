@@ -1,10 +1,339 @@
-<html>
-    <head>
-        <meta http-equiv="refresh" content="0; URL=conjugation/drill.html" />
-    </head>
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Trang luyện tập chia động từ Tiếng Nhật</title>
+  <meta name="description" content="Trang web luyện tập chia động từ và tính từ Tiếng Nhật trực tuyến dành cho người học Việt Nam.">
+  <meta property="og:title" content="Trang luyện tập chia động từ Tiếng Nhật" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://thu-tram.github.io/chia-dong-tu-tieng-nhat/" />
+  <meta property="og:image" content="img/prev.png" />
+  <meta property="og:image:width" content="300" />
+  <meta property="og:image:height" content="300" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="drill.css" type="text/css" media="screen">
+  <link rel="preload" href="words.json" as="fetch" crossorigin="anonymous">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t !== 'dark' && t !== 'light') {
+          t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+        }
+        if (t === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <script defer type="module" src="rules.js"></script>
+  <script defer type="module" src="drill.js"></script>
+</head>
+
 <body>
-<p>
-<a href="conjugation/drill.html">Luyện tập chia động từ Tiếng Nhật</a>.
-</p>
+
+  <main class="page">
+
+    <section id="splash">
+      <div class="panel">
+
+        <header class="panel-header">
+          <div class="header-topbar">
+            <button type="button" id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Đổi sang chế độ tối">
+              <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
+          </div>
+          <h1>Trang luyện tập chia động từ Tiếng Nhật</h1>
+          <p class="panel-subtitle">Muốn luyện tập gì thì bạn hãy chọn bên dưới rồi bấm Bắt đầu nha.</p>
+        </header>
+
+        <div class="panel-body">
+
+          <div class="quiz-setup">
+            <div class="field-block">
+              <label class="field-label" for="numQuestions">Số câu hỏi</label>
+              <input class="field" type="number" placeholder="Số câu hỏi" aria-label="Number of Questions"
+                id="numQuestions" value="10">
+            </div>
+            <div class="field-block">
+              <label class="field-label" for="questionFocus">Câu hỏi sẽ tập trung vào</label>
+              <select id="questionFocus" class="field" aria-label="Question Focus">
+                <option value="none">Không</option>
+                <option value="politeness">Thể lịch sự (Thể ます)</option>
+                <option value="negative">Thể phủ định</option>
+                <option value="past">Thể quá khứ</option>
+                <option value="te-form">Thể て</option>
+                <option value="progressive">Thể tiếp diễn (ている)</option>
+                <option value="desire">Thể mong muốn (たい)</option>
+                <option value="volitional">Thể ý định / Thể ý chí</option>
+                <option value="potential">Thể khả năng</option>
+                <option value="conditional">Thể điều kiện (たら)</option>
+                <option value="provisional">Thể giả định / Thể điều kiện (ば)</option>
+                <option value="imperative">Thể mệnh lệnh</option>
+                <option value="passive">Thể bị động</option>
+                <option value="causative">Thể sai khiến</option>
+                <option value="tetakei">Dạng て / た của Động từ Godan</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="button" id="go">Bắt đầu</button>
+            <button class="btn btn-ghost" type="button" id="defaults">Khởi động lại</button>
+          </div>
+
+          <p class="count-pill">Số lượng câu hỏi đang có: <span id="questionCount">...</span></p>
+
+          <div id="voiceSelectError" class="alert-error" style="display: none">
+            Bạn phải chọn một giọng đọc trước khi bật tính năng đọc thành tiếng.
+          </div>
+          <div id="politePlainError" class="alert-error" style="display: none">
+            Chọn ít nhất một cái: 'Thể thường' và 'Thể lịch sự'.
+          </div>
+          <div id="noQuestionError" class="alert-error" style="display: none">
+            Không đủ số câu hỏi để bạn luyện tập.
+          </div>
+
+          <div class="group-actions global-actions">
+            <a href="#" class="select-all-global-btn">Chọn tất cả</a>
+            <span class="sep">|</span>
+            <a href="#" class="deselect-all-global-btn">Bỏ chọn tất cả</a>
+          </div>
+
+          <div class="options option-grid">
+
+            <div class="option-card">
+              <h4 class="option-title">Thể động từ &amp; tính từ</h4>
+              <div class="group-actions">
+                <a href="#" class="select-all-btn" data-group="conjugations">Chọn tất cả</a>
+                <span class="sep">|</span>
+                <a href="#" class="deselect-all-btn" data-group="conjugations">Bỏ chọn tất cả</a>
+              </div>
+              <div class="check"><input type="checkbox" id="plain" checked><label for="plain">Thể thông thường</label></div>
+              <div class="check"><input type="checkbox" id="polite" checked><label for="polite">Thể lịch sự (Thể ます)</label></div>
+              <div class="check"><input type="checkbox" id="negative" checked><label for="negative">Thể phủ định</label></div>
+              <div class="check"><input type="checkbox" id="past" checked><label for="past">Thể quá khứ</label></div>
+              <div class="check"><input type="checkbox" id="te-form"><label for="te-form">Thể て</label></div>
+              <div class="check"><input type="checkbox" id="progressive"><label for="progressive">Thể tiếp diễn (ている)</label></div>
+              <div class="check"><input type="checkbox" id="desire"><label for="desire">Thể mong muốn (たい)</label></div>
+              <div class="check"><input type="checkbox" id="volitional"><label for="volitional">Thể ý định / Thể ý chí</label></div>
+              <div class="check"><input type="checkbox" id="potential"><label for="potential">Thể khả năng</label></div>
+              <div class="check"><input type="checkbox" id="conditional"><label for="conditional">Thể điều kiện (たら)</label></div>
+              <div class="check"><input type="checkbox" id="provisional"><label for="provisional">Thể giả định / Thể điều kiện (ば)</label></div>
+              <div class="check"><input type="checkbox" id="imperative"><label for="imperative">Thể mệnh lệnh</label></div>
+              <div class="check"><input type="checkbox" id="passive"><label for="passive">Thể bị động</label></div>
+              <div class="check"><input type="checkbox" id="causative"><label for="causative">Thể sai khiến</label></div>
+            </div>
+
+            <div class="option-card">
+              <h4 class="option-title">Động từ thường</h4>
+              <div class="group-actions">
+                <a href="#" class="select-all-btn" data-group="verbs">Chọn tất cả</a>
+                <span class="sep">|</span>
+                <a href="#" class="deselect-all-btn" data-group="verbs">Bỏ chọn tất cả</a>
+              </div>
+              <div class="check"><input type="checkbox" id="godan" checked><label for="godan">Động từ Godan</label></div>
+              <div class="check"><input type="checkbox" id="ichidan" checked><label for="ichidan">Động từ Ichidan</label></div>
+              <div class="specials">Động từ bất quy tắc</div>
+              <div class="check"><input type="checkbox" id="suru" checked><label for="suru">Động từ nhóm する</label></div>
+              <div class="check"><input type="checkbox" id="kuru" checked><label for="kuru">Động từ 来る (Kuru)</label></div>
+              <div class="check"><input type="checkbox" id="iku" checked><label for="iku">Động từ 行く (Iku)</label></div>
+              <div class="check"><input type="checkbox" id="aru" checked><label for="aru">Động từ ある (Aru)</label></div>
+              <div class="check"><input type="checkbox" id="iru" checked><label for="iru">Động từ いる (Iru)</label></div>
+              <div class="specials">Hệ từ</div>
+              <div class="check"><input type="checkbox" id="da" checked><label for="da">Hệ từ だ / です (Copula)</label></div>
+            </div>
+
+            <div class="option-card">
+              <h4 class="option-title">Tính từ</h4>
+              <div class="group-actions">
+                <a href="#" class="select-all-btn" data-group="adjectives">Chọn tất cả</a>
+                <span class="sep">|</span>
+                <a href="#" class="deselect-all-btn" data-group="adjectives">Bỏ chọn tất cả</a>
+              </div>
+              <div class="check"><input type="checkbox" id="i-adjective"><label for="i-adjective">Tính từ đuôi い</label></div>
+              <div class="check"><input type="checkbox" id="na-adjective"><label for="na-adjective">Tính từ đuôi な</label></div>
+              <div class="specials">Tính từ bất quy tắc</div>
+              <div class="check"><input type="checkbox" id="ii"><label for="ii">Tính từ いい</label></div>
+              <div class="specials">Bộ lọc</div>
+              <div class="group-actions">
+                <a href="#" class="select-all-btn" data-group="filters">Chọn tất cả</a>
+                <span class="sep">|</span>
+                <a href="#" class="deselect-all-btn" data-group="filters">Bỏ chọn tất cả</a>
+              </div>
+              <div class="check"><input type="checkbox" id="common"><label for="common">100 động từ phổ biến nhất</label></div>
+              <div class="check"><input type="checkbox" id="n5"><label for="n5">JLPT N5</label></div>
+              <div class="check"><input type="checkbox" id="n4"><label for="n4">JLPT N4</label></div>
+              <div class="check"><input type="checkbox" id="n3"><label for="n3">JLPT N3</label></div>
+              <div class="check"><input type="checkbox" id="n2"><label for="n2">JLPT N2</label></div>
+              <div class="check"><input type="checkbox" id="n1"><label for="n1">JLPT N1</label></div>
+            </div>
+
+          </div>
+
+          <div class="voice-block" id="voice_select_options" style="display: none">
+            <label class="field-label" for="voice_select">Chọn giọng đọc (Lưu ý: Giọng đọc trực tuyến có thể phát sinh phí dữ liệu!)</label>
+            <p class="voice-note">Lưu ý thêm: Các giọng đọc không phải Tiếng Nhật có thể sẽ không hoạt động.</p>
+            <select id="voice_select" class="field">
+              <option><i>Chọn giọng đọc...</i></option>
+            </select>
+          </div>
+
+          <div class="toggles">
+            <div class="check"><input type="checkbox" id="trick" checked><label for="trick">Cú lừa (Đáp án có thể chính là dạng từ đang hiện trên màn hình)</label></div>
+            <div class="check"><input type="checkbox" id="kana"><label for="kana">Chỉ dùng hiragana (không hán tự)</label></div>
+            <div class="check"><input type="checkbox" id="furigana_always" checked><label for="furigana_always">Hiện furigana trong câu hỏi</label></div>
+            <div class="check" id="goToNextQuestion">
+              <input type="checkbox" id="go_to_next_question">
+              <label for="go_to_next_question">Tự động chuyển qua câu kế tiếp nếu đã trả lời xong</label>
+            </div>
+            <div class="check" id="autoShowExplanatioj">
+              <input type="checkbox" id="auto_show_explanation">
+              <label for="auto_show_explanation">Tự động hiện phần giải thích cho đáp án</label>
+            </div>
+          </div>
+
+          <p class="footer-note">Có vấn đề gì thì bạn có thể gửi <a
+              href="https://github.com/thu-tram/chia-dong-tu-tieng-nhat/issues" target="_blank"
+              rel="noopener noreferrer">qua đây</a>.</p>
+          <p class="footer-note">-<a href="https://github.com/thu-tram/chia-dong-tu-tieng-nhat" target="_blank"
+              rel="noopener noreferrer">GitHub của dự án</a>-</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="quizSection">
+
+      <div class="progressContainer">
+        <div class="progressBar" style="width: 0%"></div>
+      </div>
+
+      <div class="quiz-topbar">
+        <a href="#" class="stop-quiz" id="stopQuiz">✕ Dừng làm bài</a>
+      </div>
+
+      <div class="questionOuter">
+        <div id="question">
+          <div id="questionFirstHalf"></div>
+          <div id="questionSecondHalf"></div>
+        </div>
+      </div>
+
+      <div id="inputArea" class="answer-slot">
+        <form name="quizForm" novalidate>
+          <input placeholder="答え" autocomplete="off" autocapitalize="off" id="answer" aria-label="答え">
+        </form>
+      </div>
+
+      <div id="proceed">
+        <button id="responseButton" class="btn btn-primary"></button>
+        <div id="message">
+          <div class="correction-text" id="correction"></div>
+          <button class="btn btn-primary" id="explain-message-button">Giải thích</button>
+        </div>
+      </div>
+
+      <div id="explanation" class="explanation-card">
+
+        <h4>Từ gốc</h4>
+        <div class="explain-answer-single">
+          <p>
+            <span id="explain-given-base"></span>
+            <span class="group-badge" id="explain-group"></span>
+            — nghĩa là: <strong id="explain-meaning"></strong>
+          </p>
+          <div class="indented">
+            <p>
+              <a id="jisho-link" href="#" target="_blank" rel="noopener noreferrer">
+                <span class="emphasis2"><span id="explain-sentence-jp"></span></span>
+              </a><br>
+              <span class="subtext2"><span id="explain-sentence-en"></span></span>
+            </p>
+          </div>
+          <div>
+            <p><span id="explain-notes"></span></p>
+          </div>
+        </div>
+
+        <h3>1. Nhận biết thể của từ được cho</h3>
+        <p><span id="explain-given"></span> là dạng <span id="explain-given-tags"></span> của <span class="explain-given-dictionary"></span>.</p>
+
+        <h3>2. Quy tắc chia</h3>
+        <div class="rule-box">
+          <p class="rule-title" id="explain-rule-title"></p>
+          <p id="explain-rule-desc"></p>
+          <p class="rule-step"><strong>Phân tích:</strong> <span id="explain-step-by-step"></span></p>
+        </div>
+
+        <h3>3. Thay đổi thể</h3>
+        <div class="explain-answer-single">
+          <p class="explain-no-trick">Đáp án là dạng <span class="explain-answer-tags"></span> của từ
+            vì câu hỏi yêu cầu chuyển sang thể <span class="highlight"><span class="explain-transform"></span></span>.
+          </p>
+          <p class="explain-trick">💡 Câu hỏi yêu cầu chuyển sang thể <span class="highlight"><span class="explain-transform"></span></span>.
+            Tuy nhiên, từ vốn dĩ đã ở dạng này nên đây là một câu hỏi mẹo — đáp án giữ nguyên dạng.
+          </p>
+        </div>
+        <div class="explain-answer-multiple">
+          <p class="explain-no-trick">Các đáp án đúng là các dạng <span class="explain-answer-tags"></span> của từ
+            vì câu hỏi yêu cầu chuyển sang thể <span class="highlight"><span class="explain-transform"></span></span>.
+          </p>
+          <p class="explain-trick">💡 Câu hỏi yêu cầu chuyển sang thể <span class="highlight"><span class="explain-transform"></span></span>.
+            Tuy nhiên, từ vốn dĩ đã ở dạng này nên đây là một câu hỏi mẹo — đáp án giữ nguyên dạng.
+          </p>
+        </div>
+
+        <h3>4. Đáp án đúng</h3>
+        <p class="explain-answer-single">
+          Dạng <span class="explain-answer-tags2"></span>:
+          <strong><span id="explain-answer-display"></span></strong>
+        </p>
+        <div class="explain-answer-multiple">
+          <p>Các dạng <span class="explain-answer-tags2"></span>:</p>
+          <ul class="explain-answer-as-list"></ul>
+        </div>
+
+        <div class="explain-footer">
+          <button id="explain-proceed-button" class="btn btn-primary">Câu hỏi tiếp theo</button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="scoreSection">
+      <div class="score-card">
+        <h1 class="score-title"><span id="scoreSectionTitleNarrow"></span></h1>
+        <div id="scoreSectionTitle"></div>
+        <div id="history"></div>
+        <div class="actions">
+          <button class="btn btn-primary" id="backToStart">Về trang chủ</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
 </body>
+
 </html>

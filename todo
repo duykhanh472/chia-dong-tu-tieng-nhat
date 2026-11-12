@@ -1,18 +1,5 @@
 # This will be a general todo checklist for things I wish to expand upon for this drill
 
-
-Next Up:
-
-- [ ] Add tip button namely for this VVVV step 
-
-# very time consuming step, may require a spreadsheet
-
-- [ ] Add Top 100 most common verbs
-- [ ] Add all verbs
-- [ ] Add top 100 most common adjectives
-- [ ] Add all adjectives
-
-
 Complete:
 - [X] Add hover to see meaning - included in explanation instead
 - [X] decouple verb db
@@ -27,11 +14,15 @@ Complete:
     this is causes issues when there are hundreds of words but our options only allows one
 - [X] solve iphone mode not working in safari (version of javascript???)
 - [X] Add feedback google form
-
-Ideas:
-- Add da (desu)
-- [ ] Add support for filtering by meta data ( jlpt, common, industry, etc)
-- [ ] Thêm chức năng chọn tất cả để luyện tập (Thêm "check all (Chọn tất cả) | uncheck all (Bỏ chọn tất cả cho từng phần)")
-- [ ] Thêm nút thoát/dừng làm bài (redirect về trang chủ) khi đang làm bài.
-
-
+- [X] Add da (desu) — Hệ từ だ / です (Copula) with full conjugation rules
+- [X] Add support for filtering by meta data (JLPT N5/N4/N3/N2/N1, common)
+- [X] Thêm chức năng chọn tất cả để luyện tập (Chọn tất cả | Bỏ chọn tất cả cho từng phần và toàn bộ)
+- [X] Thêm nút thoát/dừng làm bài (redirect về trang chủ) khi đang làm bài
+- [X] Cập nhật nghĩa Tiếng Việt cho toàn bộ từ trong words.json (dùng final.csv)
+- [X] Dịch câu ví dụ và ghi chú ngữ pháp sang Tiếng Việt
+- [X] Nâng cấp phần giải thích (explanation card) với quy tắc chia chi tiết theo nhóm (Godan, Ichidan, v.v.)
+- [X] Sửa URL: chuyển app về root index.html, conjugation/drill.html thành redirect
+- [X] Sửa link Mazii: dùng từ gốc thay vì cả câu
+- [X] Tối ưu thuật toán sinh câu hỏi (thay vòng lặp while 800 lần bằng pre-filter)
+- [X] Xóa các file không còn dùng: drill2.jsx, words.js (cũ)
+- [X] Cập nhật sitemap.xml về URL root

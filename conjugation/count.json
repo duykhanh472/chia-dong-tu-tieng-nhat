@@ -1,5 +1,5 @@
 {
-    "total_word_count": 285,
+    "total_word_count": 379,
     "godan": 109,
     "ichidan": 38,
     "iku": 1,
@@ -7,7 +7,8 @@
     "suru": 118,
     "aru": 1,
     "iru": 1,
-    "i-adjective": 7,
+    "i-adjective": 58,
     "ii": 1,
-    "na-adjective": 8
+    "na-adjective": 50,
+    "da": 1
 }

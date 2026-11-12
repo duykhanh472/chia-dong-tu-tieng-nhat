@@ -4754,5 +4754,171 @@
                 }
             ]
         }
+    },
+    "da": {
+        "negative": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "ではない"
+                },
+                {
+                    "before": "だ",
+                    "after": "じゃない"
+                }
+            ]
+        },
+        "polite": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "です"
+                }
+            ]
+        },
+        "polite negative": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "ではありません"
+                },
+                {
+                    "before": "だ",
+                    "after": "じゃありません"
+                },
+                {
+                    "before": "だ",
+                    "after": "ではないです"
+                },
+                {
+                    "before": "だ",
+                    "after": "じゃないです"
+                }
+            ]
+        },
+        "past": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "だった"
+                }
+            ]
+        },
+        "past negative": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "ではなかった"
+                },
+                {
+                    "before": "だ",
+                    "after": "じゃなかった"
+                }
+            ]
+        },
+        "polite past": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "でした"
+                }
+            ]
+        },
+        "polite past negative": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "ではありませんでした"
+                },
+                {
+                    "before": "だ",
+                    "after": "じゃありませんでした"
+                }
+            ]
+        },
+        "te-form": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "で"
+                }
+            ]
+        },
+        "te-form negative": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "でなくて"
+                },
+                {
+                    "before": "だ",
+                    "after": "ではなくて"
+                },
+                {
+                    "before": "だ",
+                    "after": "じゃなくて"
+                }
+            ]
+        },
+        "conditional": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "だったら"
+                }
+            ]
+        },
+        "conditional negative": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "ではなかったら"
+                },
+                {
+                    "before": "だ",
+                    "after": "じゃなかったら"
+                }
+            ]
+        },
+        "provisional": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "なら"
+                },
+                {
+                    "before": "だ",
+                    "after": "ならば"
+                }
+            ]
+        },
+        "provisional negative": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "でなければ"
+                },
+                {
+                    "before": "だ",
+                    "after": "じゃなければ"
+                }
+            ]
+        },
+        "volitional": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "だろう"
+                }
+            ]
+        },
+        "polite volitional": {
+            "forms": [
+                {
+                    "before": "だ",
+                    "after": "でしょう"
+                }
+            ]
+        }
     }
 }
